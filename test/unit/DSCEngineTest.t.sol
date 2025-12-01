@@ -63,8 +63,8 @@ contract DSCEngineTest is StdCheats, Test {
         //     vm.etch(ethUsdPriceFeed, address(aggregatorMock).code);
         //     vm.etch(btcUsdPriceFeed, address(aggregatorMock).code);
         // }
-        ERC20Mock(weth).mint(user, STARTING_USER_BALANCE);
-        ERC20Mock(wbtc).mint(user, STARTING_USER_BALANCE);
+        ERC20Mock(weth).mint(user, STARTING_USER_BALANCE); // Equivalent to deal(weth, user, STARTING_USER_BALANCE);
+        ERC20Mock(wbtc).mint(user, STARTING_USER_BALANCE); // Equivalent to deal(wbtc, user, STARTING_USER_BALANCE);
     }
 
     ///////////////////////
