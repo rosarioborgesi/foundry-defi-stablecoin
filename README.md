@@ -164,6 +164,21 @@ forge fmt
 slither :; slither . --config-file slither.config.json
 ```
 
+## Fuzz Tests
+### failOnRevert tests:
+
+`fail_on_revert = true` in foundry.toml
+
+Run
+`forge test --match-path test/fuzz/failOnRevert/StopOnRevertInvariants.t.sol`
+
+### continueOnRevert tests:
+
+`fail_on_revert = false` in foundry.toml. Maybe I don't need this
+
+Run
+`forge test --match-path test/fuzz/continueOnRevert/ContinueOnRevertInvariants.t.sol`
+
 # Additional Info:
 Some users were having a confusion that whether Chainlink-brownie-contracts is an official Chainlink repository or not. Here is the info.
 Chainlink-brownie-contracts is an official repo. The repository is owned and maintained by the chainlink team for this very purpose, and gets releases from the proper chainlink release process. You can see it's still the `smartcontractkit` org as well.
