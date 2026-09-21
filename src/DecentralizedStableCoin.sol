@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: MIT
-
 // Layout of Contract:
 // version
 // imports
@@ -21,9 +19,10 @@
 // private
 // view & pure functions
 
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
-import {ERC20, ERC20Burnable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
@@ -37,16 +36,16 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
  * This is the contract meant to be governed by DSCEngine. This contract is just the ERC20
  * implementation of our stablecoin system.
  */
-contract DecentralizedStableCoin is ERC20Burnable, Ownable {
+contract DecentralizedStableCoin is ERC20, Ownable {
     error DecentralizedStableCoin__MustBeMoreThanZero();
 
     constructor(address _owner) ERC20("DecentralizedStableCoin", "DSC") Ownable(_owner) {}
 
-    function burn(uint256 _amount) public override onlyOwner {
+    function burn(uint256 _amount) external onlyOwner {
         if (_amount == 0) {
             revert DecentralizedStableCoin__MustBeMoreThanZero();
         }
-        super.burn(_amount);
+        _burn(msg.sender, _amount);
     }
 
     function mint(address _to, uint256 _amount) external onlyOwner returns (bool) {
